@@ -1,5 +1,6 @@
 {
     "config": {
+      "isProductSelect": true,
       "debug": false,
       "commercetools": {
         "defaultCulture": "en",
