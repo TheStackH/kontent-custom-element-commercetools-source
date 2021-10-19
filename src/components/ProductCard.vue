@@ -90,6 +90,7 @@ export default {
     selectProduct: function() {
       this.$emit("onProductSelected", {
         id: this.product.id,
+        sku: this.product.masterVariant.sku,
         variantId: this.selectedVariantId,
         culture: this.culture
       });

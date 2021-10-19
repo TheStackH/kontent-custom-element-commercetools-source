@@ -1,0 +1,14 @@
+{
+    "config": {
+      "debug": false,
+      "commercetools": {
+        "defaultCulture": "en",
+        "project": "horizon-platforms",
+        "clientId": "gDAXYnlvKK-Vwu8fRdqXcwQg",
+        "clientSecret": "oSTZRhp1801b0rd_6a-4E9Je2OyweWFp",
+        "oauthUrl": "https://auth.sphere.io",
+        "apiUrl": "https://api.sphere.io",
+        "scope": "manage_project:horizon-platforms"
+      }
+    }
+  }

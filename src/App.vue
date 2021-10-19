@@ -28,6 +28,7 @@ import Callout from "./components/Callout";
 import Debug from "./components/Debug";
 import CommercetoolsSelector from "./components/CommercetoolsSelector";
 import Vue from "vue";
+import jsonConfig from "./test/config.json";
 import { GlobalEventBus } from "./globalEventBus";
 
 export default {
@@ -42,15 +43,20 @@ export default {
     errorMessage: "",
     element: {},
     context: {},
-    value: null
+    value: null,
+    jsonConfig: jsonConfig
   }),
   created: function() {
     try {
-      CustomElement.init(this.initialize);
-      CustomElement.onDisabledChanged(this.handleDisable);
-      CustomElement.observeElementChanges([], elementCodename => {
-        GlobalEventBus.$emit("onElementChanged", elementCodename[0]);
-      });
+      if (process.env.VUE_APP_IS_LOCAL) {
+        this.initialize(jsonConfig, null);
+      } else {
+        CustomElement.init(this.initialize);
+        CustomElement.onDisabledChanged(this.handleDisable);
+        CustomElement.observeElementChanges([], elementCodename => {
+          GlobalEventBus.$emit("onElementChanged", elementCodename[0]);
+        });
+      }
     } catch (error) {
       this.errorMessage = error;
     }
@@ -81,7 +87,7 @@ export default {
       // Explicitly using == to match both null and undefined
       const toSave = value == null ? null : JSON.stringify(value);
       this.element.value = toSave;
-      CustomElement.setValue(toSave);
+      //CustomElement.setValue(toSave);
     },
     updateSize() {
       Vue.nextTick(function() {

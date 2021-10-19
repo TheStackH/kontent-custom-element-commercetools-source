@@ -8,7 +8,7 @@ module.exports = {
     "no-console": process.env.NODE_ENV === "production" ? "error" : "warn",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "warn"
   },
-  parserOptions: {
-    parser: "babel-eslint"
-  }
+   parserOptions: {
+     parser: "babel-eslint"
+   }
 };
