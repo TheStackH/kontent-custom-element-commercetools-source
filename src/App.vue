@@ -48,7 +48,7 @@ export default {
   }),
   created: function() {
     try {
-      if (process.env.VUE_APP_IS_LOCAL) {
+      if (process.env.VUE_APP_IS_LOCAL == "true") {
         this.initialize(jsonConfig, null);
       } else {
         CustomElement.init(this.initialize);
