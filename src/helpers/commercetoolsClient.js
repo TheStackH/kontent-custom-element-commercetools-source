@@ -39,6 +39,16 @@ export default class commercetoolsClient {
     return await this.getResponse(url);
   }
 
+  async getCategories() {
+    const url = `${this.apiUrl}/${this.project}/categories`;
+    return await this.getResponse(url);
+  }
+
+  async getCategoryByKey(key) {
+    const url = `${this.apiUrl}/${this.project}/categories/key=${key}`;
+    return await this.getResponse(url);
+  }
+
   async searchProducts({
     text,
     staged = true,

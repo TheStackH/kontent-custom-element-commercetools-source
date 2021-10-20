@@ -1,13 +1,27 @@
 <template>
   <div class="wrapper">
     <ProductSearch
-      v-if="!value && !element.disabled"
+      v-if="!value && !element.disabled && element.config.isProductSelect"
       :commercetoolsClient="commercetoolsClient"
       @onProductSelected="save"
       :defaultCulture="defaultCulture"
     />
     <PreviewValue
-      v-if="value"
+      v-if="value && element.config.isProductSelect"
+      :value="value"
+      :disabled="element.disabled"
+      :commercetoolsClient="commercetoolsClient"
+      @onProductCleared="reset"
+    />
+
+    <CategoryResultList
+      v-if="!value && !element.disabled && !element.config.isProductSelect"
+      :commercetoolsClient="commercetoolsClient"
+      :culture="defaultCulture"
+      @onProductSelected="save"
+    />
+    <PreviewCategory
+      v-if="value && !element.config.isProductSelect"
       :value="value"
       :disabled="element.disabled"
       :commercetoolsClient="commercetoolsClient"
@@ -20,11 +34,15 @@
 import commercetoolsClient from "../helpers/commercetoolsClient";
 import PreviewValue from "./PreviewValue";
 import ProductSearch from "./ProductSearch";
+import CategoryResultList from "./CategoryResultList.vue";
+import PreviewCategory from "./PreviewCategory.vue";
 
 export default {
   components: {
     PreviewValue,
-    ProductSearch
+    ProductSearch,
+    CategoryResultList,
+    PreviewCategory
   },
   props: {
     element: {
