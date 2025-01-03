@@ -40,7 +40,7 @@ export default class commercetoolsClient {
   }
 
   async getCategories() {
-    const url = `${this.apiUrl}/${this.project}/categories`;
+    const url = `${this.apiUrl}/${this.project}/categories?limit=500`;
     return await this.getResponse(url);
   }
 
